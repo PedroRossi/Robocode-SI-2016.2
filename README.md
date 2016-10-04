@@ -1,7 +1,6 @@
-# robocode-drools
-Robocode robot skeleton based on drools.
-
-This code was adapted from the code available at http://ccia.ei.uvigo.es/docencia/IA/0910/practicas/practica-2/
-
-There are also some slides (in portuguese) about this code at http://pt.slideshare.net/agogear/drools-robocode 
 # Robocode-SI-2016.2
+Esquelto de robocode com IA voltada a ganhar de outros robos com a melhor estrategia possivel (y)
+
+Para configurar o projeto importe ele do git e configure como um projeto Maven, apos isso importe os arquivos .jar que se encontram na pasta lib e depois insira o caminho do seu robo no arquivo pom.xml em <robocode.robots.path>.
+
+Para rodar o projeto execute maven build.
