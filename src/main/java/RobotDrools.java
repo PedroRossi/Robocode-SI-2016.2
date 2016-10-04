@@ -5,6 +5,7 @@
 package main.java;
 
 import java.util.Vector;
+
 import org.drools.KnowledgeBase;
 import org.drools.KnowledgeBaseFactory;
 import org.drools.builder.KnowledgeBuilder;
@@ -14,6 +15,7 @@ import org.drools.io.ResourceFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.rule.FactHandle;
 import org.drools.runtime.rule.QueryResultsRow;
+
 import robocode.AdvancedRobot;
 import robocode.BulletHitBulletEvent;
 import robocode.BulletHitEvent;
@@ -22,9 +24,7 @@ import robocode.HitByBulletEvent;
 import robocode.HitRobotEvent;
 import robocode.HitWallEvent;
 import robocode.RobotDeathEvent;
-import robocode.RobotStatus;
 import robocode.ScannedRobotEvent;
-import robocode.StatusEvent;
 
 /**
  *
@@ -32,7 +32,7 @@ import robocode.StatusEvent;
  */
 public class RobotDrools extends AdvancedRobot {
 
-    public static String FICHERO_REGLAS = "drools_robocode/reglas/reglas_robot.drl";
+    public static String FICHERO_REGLAS = "reglas/reglas_robot.drl";
     public static String CONSULTA_ACCIONES = "consulta_acciones";
     
     private KnowledgeBuilder kbuilder;

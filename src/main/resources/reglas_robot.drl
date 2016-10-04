@@ -1,4 +1,4 @@
-package drools_robocode
+package resources
 
 import drools_robocode.*;
 import robocode.*;

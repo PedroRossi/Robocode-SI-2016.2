@@ -24,7 +24,7 @@ import robocode.*;
  */
 public class ComprobarReglas {
 
-    public static String FICHERO_REGLAS = "drools_robocode/reglas/reglas_robot.drl";
+    public static String FICHERO_REGLAS = "reglas/reglas_robot.drl";
     public static String CONSULTA_ACCIONES = "consulta_acciones";
     private KnowledgeBuilder kbuilder;
     private KnowledgeBase kbase;                // Base de conocimientos

@@ -1,112 +1,123 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  	<modelVersion>4.0.0</modelVersion>
-  	<groupId>robocode</groupId>
-  	<artifactId>robocode</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	 
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>cinufpe-if684</groupId>
+	<artifactId>robocode-drools</artifactId>
+	<version>0.0.1-SNAPSHOT</version>	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<robocode.robot.path>C:\Users\Pedro\workspace\droolsrobocode-1.9.2.5\robots\</robocode.robot.path>
+		<robocode.robot.path>C:/droolsrobocode-1.9.2.5/robots</robocode.robot.path>
 	</properties>
 	
-	<repositories>
-		<repository>
-			<id>drools</id>
-			<name>Repository for Drools</name>
-			<url>https://repository.jboss.org/nexus/content/groups/public/</url>
-		</repository>
-	</repositories>
 	
 	<dependencies>
 		<!-- Internal dependencies -->
 		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-api</artifactId>
+			<version>6.1.0.Final</version>
+		</dependency>
+		<dependency>
 			<groupId>org.drools</groupId>
 			<artifactId>drools-core</artifactId>
-			<version>5.1.1</version>
+			<version>6.1.0.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.drools</groupId>
 			<artifactId>drools-compiler</artifactId>
-			<version>5.1.1</version>
-			<exclusions>
-				<exclusion>
-				<groupId>org.eclipse.jdt.core.compiler</groupId>
-				<artifactId>ecj</artifactId>
-				</exclusion>
-			</exclusions>
+			<version>6.1.0.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.drools</groupId>
-			<artifactId>drools-decisiontables</artifactId>
-			<version>5.1.1</version>
+			<artifactId>drools-simulator</artifactId>
+			<version>6.1.0.Final</version>
 		</dependency>
+		<dependency>
+			<groupId>org.jbpm</groupId>
+			<artifactId>jbpm-flow-builder</artifactId>
+			<version>6.1.0.Final</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.drools</groupId>
-			<artifactId>drools-templates</artifactId>
-			<version>5.1.1</version>
+			<artifactId>knowledge-api</artifactId>
+			<version>6.1.0.Final</version>
 		</dependency>
+
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.16</version>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.6</version>
 		</dependency>
+		<!-- Needed for logging -->
 		<dependency>
-			<groupId>dom4j</groupId>
-			<artifactId>dom4j</artifactId>
-			<version>1.6.1</version>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.4.7</version>
 		</dependency>
+
+		<!-- Logging -->
 		<dependency>
-		  <groupId>org.codehaus.janino</groupId>
-		  <artifactId>janino</artifactId>
-		  <version>2.5.16</version>
-		 </dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>robocode</groupId>
+			<artifactId>robocode</artifactId>
+			<version>1.9.2.4</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/robocode.jar</systemPath>
+		</dependency>
+
 	</dependencies>
-	
-	<build>
-		<sourceDirectory>src</sourceDirectory>
-		<resources>
-			<resource>
-			    <directory>src</directory>
-			    <excludes>
-			      <exclude>**/*.java</exclude>
-			    </excludes>
-			</resource>
-			<resource>
-				<directory>src/main/resources</directory>
-			</resource>
-			<resource>
-				<directory>src/main/rules</directory>
-			</resource>
-		</resources>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-eclipse-plugin</artifactId>
-				<configuration>
-					<additionalBuildcommands>
-						<buildcommand>org.drools.eclipse.droolsbuilder</buildcommand>
-					</additionalBuildcommands>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<configuration>
-					<archive>
-						<manifest>
-							<addClasspath>true</addClasspath>
-						</manifest>
-					</archive>
-				</configuration>
-			</plugin>
-			<plugin>
-		      <artifactId>maven-compiler-plugin</artifactId>
-		      <version>3.3</version>
-		      <configuration>
-		        <source>1.7</source>
-		        <target>1.7</target>
-		      </configuration>
-		    </plugin>	
-		</plugins>
-	</build>
+<build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.9</version>
+        <executions>
+          <execution>
+            <id>copy-dependencies</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/dependencies</outputDirectory>
+              <overWriteReleases>false</overWriteReleases>
+              <overWriteSnapshots>false</overWriteSnapshots>
+              <overWriteIfNewer>true</overWriteIfNewer>
+           	  <excludeArtifactIds>robocode</excludeArtifactIds>
+            </configuration>
+          </execution>
+			<execution>
+                    <id>unpack</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>unpack</goal>
+                    </goals>
+                    <configuration>
+                        <artifactItems>
+                            <artifactItem>
+                                <groupId>${project.groupId}</groupId>
+                                <artifactId>${project.artifactId}</artifactId>
+                                <version>${project.version}</version>
+                                <type>jar</type>
+                                <!--  <includes>path/to/Files.whatsoever</includes> -->
+                                <overWrite>true</overWrite>
+                                <outputDirectory>${robocode.robot.path}</outputDirectory>
+                            </artifactItem>
+                        </artifactItems>
+						<overWriteReleases>true</overWriteReleases>
+		                <overWriteSnapshots>true</overWriteSnapshots>                            
+                    </configuration>
+                </execution>            
+          
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>
