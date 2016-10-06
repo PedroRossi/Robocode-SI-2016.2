@@ -1,0 +1,48 @@
+package grupo4;
+
+import grupo4.*;
+import robocode.*;
+import robocode.ScannedRobotEvent;
+
+
+query "snorlaxca"
+  accion: Accion()
+end
+declare Victima
+   nombre: String
+   x: double
+   y: double
+   distancia: double
+end
+
+
+
+rule "Movimento aleatorio"
+   when
+		not (exists ScannedRobotEvent())   
+   then
+   		insert(new Accion(Accion.GIRAR_RADAR_DER, 360, 1));
+   		double ang= Math.random()*360;
+   		if(ang>180){
+   			ang-=180;
+   			insert(new Accion(Accion.GIRAR_TANQUE_IZQ, ang, 1));
+   		}else {
+   			insert(new Accion(Accion.GIRAR_TANQUE_DER, ang, 1));
+   		}
+   		insert(new Accion(Accion.AVANZAR, Math.random()*360, 1));
+end
+
+rule "Volte Da Parede"
+   when
+		exists HitWallEvent()
+   then
+	   insert(new Accion(Accion.GIRAR_TANQUE_DER, 180, 1));
+	   insert(new Accion(Accion.AVANZAR, 30, 1));
+end
+
+rule "Vitima detectada"
+   when
+		exists ScannedRobotEvent()
+   then
+	   insert(new Accion(Accion.DISPARAR, 3, 1));
+end
