@@ -32,6 +32,8 @@ public class Accion {
     public static final int GIRAR_CANON_DER=9;
     public static final int GIRAR_CANON_IZQ=10;
     public static final int MANDA_MSG=11;
+    public static final int SET_DIR=12;
+    
 
 
     public Accion() {
@@ -86,6 +88,7 @@ public class Accion {
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 				}break;
+                case Accion.SET_DIR: ((Snorlax)robot).direction=(int)(parametro+0.1);
             }
         }
     }
