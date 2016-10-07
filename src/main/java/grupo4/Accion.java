@@ -68,7 +68,6 @@ public class Accion {
     }
 
 
-
     public void iniciarEjecucion() {
         if (this.robot != null) {
             switch (this.tipo) {
@@ -83,7 +82,7 @@ public class Accion {
                 case Accion.GIRAR_TANQUE_DER: robot.setTurnRight(parametro); break;
                 case Accion.GIRAR_TANQUE_IZQ: robot.setTurnLeft(parametro); break;
                 case Accion.MANDA_MSG: try {
-					robot.sendMessage("",new MessageG4());
+					robot.sendMessage(""+(parametro),new MessageG4());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 				}break;

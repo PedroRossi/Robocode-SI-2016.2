@@ -8,13 +8,16 @@ import robocode.ScannedRobotEvent;
 query "snorlaxca"
   accion: Accion()
 end
-declare Victima
-   nombre: String
+
+declare Vitima
+   nome: String
    x: double
    y: double
+   velocidade: double
+   heading: double
+   tempo: long
    distancia: double
 end
-
 
 
 rule "Movimento aleatorio"
@@ -42,7 +45,49 @@ end
 
 rule "Vitima detectada"
    when
-		exists ScannedRobotEvent()
+		$vitimaD: ScannedRobotEvent()
+   		not (exists Vitima(nome==$vitimaD.getName()))
+		$status: EstadoRobot()
    then
+   		Vitima vit=new Vitima();
+   		vit.setX($status.getX()+($vitimaD.getDistance())*Math.sin(2*3.1416*($status.getHeading()+$vitimaD.getBearing())/360.0));
+   		vit.setY($status.getY()+($vitimaD.getDistance())*Math.cos(2*3.1416*($status.getHeading()+$vitimaD.getBearing())/360.0));
+   		vit.setHeading($vitimaD.getHeading());
+   		vit.setNome($vitimaD.getName());
+   		vit.setVelocidade($vitimaD.getVelocity());
+   		vit.setTempo(System.currentTimeMillis());
+   		insert(vit);
 	   insert(new Accion(Accion.DISPARAR, 3, 1));
+end
+
+rule "vitima duple"
+	when
+	  $vit: Vitima ($nomeVit: nome)
+      $status : EstadoRobot()
+      $vitimaD: ScannedRobotEvent(name == $nomeVit)
+    then
+		$vit.setX($status.getX()+($vitimaD.getDistance())*Math.sin(2*3.1416*($status.getHeading()+$vitimaD.getBearing())/360.0));
+   		$vit.setY($status.getY()+($vitimaD.getDistance())*Math.cos(2*3.1416*($status.getHeading()+$vitimaD.getBearing())/360.0));
+   		$vit.setHeading($vitimaD.getHeading());
+   		$vit.setNome($vitimaD.getName());
+   		$vit.setVelocidade($vitimaD.getVelocity());
+   		$vit.setTempo(System.currentTimeMillis());
+end
+
+rule "Guess Factor"
+	when
+		$status: EstadoRobot()
+		$vit: ScannedRobotEvent()
+		
+	then
+		double BearingAbsoluto=$status.getHeadingRadians()+$vit.getBearingRadians();
+		double ex=$status.getX()+Math.sin(BearingAbsoluto)*$vit.getDistance();
+		double ey=$status.getY()+Math.cos(BearingAbsoluto)*$vit.getDistance();
+		for(int i=0;i<Snorlax.Infos.size();i++);
+end
+rule "Vitima Salva"
+	when
+		$vit: Vitima()
+	then
+		insert(new Accion(Accion.DISPARAR, 1, 3));
 end

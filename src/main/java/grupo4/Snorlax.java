@@ -40,9 +40,11 @@ public class Snorlax extends TeamRobot {
     private KnowledgeBase kbase;   // Base de conocimeintos
     private StatefulKnowledgeSession ksession;  // Memoria activa
     private Vector<FactHandle> referenciasHechosActuales = new Vector<FactHandle>();
-    private Vector<RobotInfo> Infos;
-    
+    public static Vector<RobotInfo> Infos;
+    private static int[] stats = new int[31];
+    private int direction=1;
     public Snorlax(){
+    	Infos=new Vector<RobotInfo>();
     }
     
     @Override

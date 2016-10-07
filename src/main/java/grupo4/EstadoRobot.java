@@ -75,6 +75,9 @@ public class EstadoRobot {
     public double getHeading() {
         return heading;
     }
+    public double getHeadingRadians() {
+        return 2*3.1416*heading/360;
+    }
 
     public int getNumRounds() {
         return numRounds;
