@@ -32,6 +32,8 @@ public class Accion {
     public static final int GIRAR_CANON_DER=9;
     public static final int GIRAR_CANON_IZQ=10;
     public static final int MANDA_MSG=11;
+    public static final int SET_DIR=12;
+    
 
 
     public Accion() {
@@ -68,7 +70,6 @@ public class Accion {
     }
 
 
-
     public void iniciarEjecucion() {
         if (this.robot != null) {
             switch (this.tipo) {
@@ -83,10 +84,11 @@ public class Accion {
                 case Accion.GIRAR_TANQUE_DER: robot.setTurnRight(parametro); break;
                 case Accion.GIRAR_TANQUE_IZQ: robot.setTurnLeft(parametro); break;
                 case Accion.MANDA_MSG: try {
-					robot.sendMessage("",new MessageG4());
+					robot.sendMessage(""+(parametro),new MessageG4());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 				}break;
+                case Accion.SET_DIR: ((Snorlax)robot).direction=(int)(parametro+0.1);
             }
         }
     }
