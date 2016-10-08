@@ -30,10 +30,10 @@ import robocode.TeamRobot;
  *
  * @author ribadas
  */
-public class Snorlax extends TeamRobot {
+public class AntiGrav extends TeamRobot {
 
-    public static String FICHERO_REGLAS = "grupo4/reglas/snorlax.drl";
-    public static String CONSULTA_ACCIONES = "snorlaxca";
+    public static String FICHERO_REGLAS = "grupo4/reglas/AntiGrav.drl";
+    public static String CONSULTA_ACCIONES = "antigravca";
     
     private KnowledgeBuilder kbuilder;
     private KnowledgeBase kbase;   // Base de conocimeintos
@@ -41,8 +41,8 @@ public class Snorlax extends TeamRobot {
     private Vector<FactHandle> referenciasHechosActuales = new Vector<FactHandle>();
     public static Vector<RobotInfo> Infos=new Vector<RobotInfo>();
     public static int[] stats = new int[31];
-    int direction=1;
-    public Snorlax(){
+    public static int direction=1,dir=1;
+    public AntiGrav(){
     }
     
     @Override
@@ -86,13 +86,13 @@ public class Snorlax extends TeamRobot {
 
 
     private void crearBaseConocimiento() {
-        String ficheroReglas = System.getProperty("robot.reglas", Snorlax.FICHERO_REGLAS);
+        String ficheroReglas = System.getProperty("robot.reglas", AntiGrav.FICHERO_REGLAS);
 
         DEBUG.mensaje("crear base de conocimientos");
         kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
         
         DEBUG.mensaje("cargar reglas desde "+ficheroReglas);
-        kbuilder.add(ResourceFactory.newClassPathResource(ficheroReglas, Snorlax.class), ResourceType.DRL);
+        kbuilder.add(ResourceFactory.newClassPathResource(ficheroReglas, AntiGrav.class), ResourceType.DRL);
         if (kbuilder.hasErrors()) {
             System.err.println(kbuilder.getErrors().toString());
         }
@@ -131,7 +131,7 @@ public class Snorlax extends TeamRobot {
         Accion accion;
         Vector<Accion> listaAcciones = new Vector<Accion>();
 
-        for (QueryResultsRow resultado : ksession.getQueryResults(Snorlax.CONSULTA_ACCIONES)) {
+        for (QueryResultsRow resultado : ksession.getQueryResults(AntiGrav.CONSULTA_ACCIONES)) {
             accion = (Accion) resultado.get("accion");  // Obtener el objeto accion
             accion.setRobot(this);                      // Vincularlo al robot actual
             listaAcciones.add(accion);

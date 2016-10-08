@@ -6,6 +6,7 @@ package grupo4;
 
 import java.util.List;
 import java.util.Vector;
+
 import org.drools.KnowledgeBase;
 import org.drools.KnowledgeBaseFactory;
 import org.drools.builder.KnowledgeBuilder;
@@ -15,8 +16,6 @@ import org.drools.io.ResourceFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.rule.FactHandle;
 import org.drools.runtime.rule.QueryResultsRow;
-
-import robocode.*;
 
 /**
  *

@@ -53,6 +53,7 @@ public class EstadoRobot {
         return distanceRemaining;
     }
     public boolean isNotTeammate(String s){
+    	if(team==null)return true;
     	for(int i=0;i<team.length;i++)if(s.equals(team[i]))return false;
     	return true;
     }

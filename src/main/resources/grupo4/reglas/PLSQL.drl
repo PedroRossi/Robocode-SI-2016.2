@@ -5,7 +5,7 @@ import robocode.*;
 import robocode.ScannedRobotEvent;
 import java.utils.*
 
-query "snorlaxca"
+query "plsqlca"
   accion: Accion()
 end
 
@@ -118,8 +118,8 @@ rule "Guess Factor"
 		else insert(new Accion(Accion.GIRAR_CANON_IZQ, 3.1416+gunAdj*360.0/2/3.1416, 3));
 		insert(new Accion(Accion.DISPARAR, power, 3));
 		Snorlax.Infos.add(newRI);
-		insert(new Accion(Accion.GIRAR_TANQUE_DER, $vit.getBearing(), 3));
-		insert(new Accion(Accion.AVANZAR, $vit.getDistance()/2.5, 3));
+		insert(new Accion(Accion.GIRAR_TANQUE_DER, 30, 3));
+		insert(new Accion(Accion.AVANZAR, 10, 3));
 end
 rule "Vitima Salva"
 	when
